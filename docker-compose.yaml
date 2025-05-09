@@ -18,7 +18,7 @@ services:
       - antworker
 
   api:
-    image: ghcr.io/theanthil/anthil:v1.0.2
+    image: ghcr.io/theanthil/anthil:v1.0.3
     restart: on-failure
     ports:
       - "8080:8080"
