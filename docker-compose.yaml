@@ -15,7 +15,7 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
-      - antworker
+      - worker
 
   api:
     image: ghcr.io/theanthil/anthil:v1.0.3
@@ -27,15 +27,15 @@ services:
       db:
         condition: service_healthy
     networks:
-      - antworker
+      - worker
 
   scheduler:
     image: ghcr.io/theanthil/worker:v1.0.2
     restart: on-failure
     env_file: .env
     networks:
-      - antworker
-    command: python -m antworker.scheduler
+      - worker
+    command: python -m worker.scheduler
 
 
   triggerier:
@@ -43,12 +43,12 @@ services:
     restart: on-failure
     env_file: .env
     networks:
-      - antworker
-    command: python -m antworker.triggerier
+      - worker
+    command: python -m worker.triggerier
 
 
 volumes:
   postgres_data:
 
 networks:
-  antworker:
+  worker:
