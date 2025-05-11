@@ -18,7 +18,7 @@ services:
       - worker
 
   api:
-    image: ghcr.io/theanthil/anthil:v1.0.3
+    image: ghcr.io/cosmay-s/pulsorch_api:v1.0.0
     restart: on-failure
     ports:
       - "8080:8080"
@@ -30,7 +30,7 @@ services:
       - worker
 
   scheduler:
-    image: ghcr.io/theanthil/worker:v1.0.2
+    image: ghcr.io/cosmay-s/pulsorch_worker:v.1.0.0
     restart: on-failure
     env_file: .env
     networks:
@@ -39,7 +39,7 @@ services:
 
 
   triggerier:
-    image: ghcr.io/theanthil/worker:v1.0.2
+    image: ghcr.io/cosmay-s/pulsorch_worker:v.1.0.0
     restart: on-failure
     env_file: .env
     networks:
