@@ -15,10 +15,10 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
-      - antworker
+      - worker
 
   api:
-    image: ghcr.io/theanthil/anthil:v1.0.3
+    image: ghcr.io/cosmay-s/pulsorch_api:v1.0.0
     restart: on-failure
     ports:
       - "8080:8080"
@@ -27,28 +27,28 @@ services:
       db:
         condition: service_healthy
     networks:
-      - antworker
+      - worker
 
   scheduler:
-    image: ghcr.io/theanthil/worker:v1.0.2
+    image: ghcr.io/cosmay-s/pulsorch_worker:v.1.0.0
     restart: on-failure
     env_file: .env
     networks:
-      - antworker
-    command: python -m antworker.scheduler
+      - worker
+    command: python -m worker.scheduler
 
 
   triggerier:
-    image: ghcr.io/theanthil/worker:v1.0.2
+    image: ghcr.io/cosmay-s/pulsorch_worker:v.1.0.0
     restart: on-failure
     env_file: .env
     networks:
-      - antworker
-    command: python -m antworker.triggerier
+      - worker
+    command: python -m worker.triggerier
 
 
 volumes:
   postgres_data:
 
 networks:
-  antworker:
+  worker:
