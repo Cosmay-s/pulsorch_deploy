@@ -30,7 +30,7 @@ services:
       - worker
 
   scheduler:
-    image: ghcr.io/cosmay-s/pulsorch_worker:v.1.0.0
+    image: ghcr.io/cosmay-s/pulsorch_worker:v1.0.0
     restart: on-failure
     env_file: .env
     networks:
@@ -39,7 +39,7 @@ services:
 
 
   triggerier:
-    image: ghcr.io/cosmay-s/pulsorch_worker:v.1.0.0
+    image: ghcr.io/cosmay-s/pulsorch_worker:v1.0.0
     restart: on-failure
     env_file: .env
     networks:
